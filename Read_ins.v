@@ -9,7 +9,7 @@ module read_instructions(instruction, program_counter);
     reg [31:0] instructions [255:0];  //set to the number of instructions in the file
 	
     initial begin 
-        $readmemb("instruction.mem", instructions); 
+        $readmemb("instructions.mem", instructions, 6, 0); 
     end
 	
     always @ (program_counter) begin

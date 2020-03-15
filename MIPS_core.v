@@ -38,7 +38,7 @@ module mips_core(clock);
     // Instantiating all necessary modules
     read_instructions inst_mem (instruction, PC);
 	
-    ins_parser parse (opcode, rs, rt, rd, shamt, funct, immediate, address, instruction, PC);
+    ins_parse parse (opcode, rs, rt, rd, shamt, funct, immediate, address, instruction, PC);
 	
     control_unit signals (RegRead, RegWrite,MemRead, MemWrite, RegDst, 
                                 branch_signal, opcode, funct);
@@ -48,7 +48,7 @@ module mips_core(clock);
     read_data_memory dataMemory (memory_read_data, write_data, rt_content, opcode, MemRead, MemWrite);
 	
     read_registers contents (rs_content, rt_content, write_data, rs, rt, rd, opcode, 
-                                    RegRead, RegWrite, RegDst, clock);
+                                    RegRead, RegWrite, RegDst);
 	
     // PC operations - The next instruction is read only when the clock is at positive edge
     always @(posedge clock) begin 
